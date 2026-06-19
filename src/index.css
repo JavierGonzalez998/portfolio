@@ -1,0 +1,8 @@
+@import "tailwindcss";
+ @plugin "daisyui" {
+   themes: retro --default, abyss --prefersdark;
+ }
+
+html {
+  scroll-behavior: smooth;
+}
