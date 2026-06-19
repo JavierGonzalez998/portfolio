@@ -11,7 +11,7 @@ export default () => {
                     <li><a href='#Hero'><Home size={18}/>Inicio</a></li>
                     <li><a href='#About'><User size={18}/>Sobre mí</a></li>
                     <li><a href='#Projects'><Briefcase size={18}/>Proyectos</a></li>
-                    <li><a><Mail size={18}/>Contacto</a></li>
+                    <li><a href='#Contact'><Mail size={18}/>Contacto</a></li>
                 </ul>
             </div>
         </div>

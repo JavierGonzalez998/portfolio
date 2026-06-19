@@ -1,6 +1,16 @@
 import { useRef, useState } from 'react'
-import { GitBranch, Globe } from 'lucide-react'
+import { GitBranch, Globe, ChevronLeft, ChevronRight } from 'lucide-react'
+import useEmblaCarousel from 'embla-carousel-react'
 
+import audisoft from '@/assets/audisoft.png'
+import gatblac from '@/assets/gatblac.png'
+import recmetal from '@/assets/recmetal.png'
+
+import comex from '@/assets/comex.png'
+import CInforme from '@/assets/comex-informe.png'
+import PTrainer from '@/assets/pTrainerMain.png'
+import PTrainerTeam from '@/assets/PTrainerTeam.png'
+import RDashboard from '@/assets/Romanas-Dashboard.png'
 type Project = {
     title: string
     image: string
@@ -12,72 +22,133 @@ type Project = {
 
 const work: Project[] = [
     {
-        title: 'ERP SAP B1 Add-on',
-        image: 'https://picsum.photos/seed/work1/400/250',
-        summary: `# ERP SAP B1 Add-on
+        title: 'Sistema Intranet Trabajadores',
+        image: audisoft,
+        summary: `Sistema Intranet Trabajadores (2021-2023)
 
-Add-on de facturación electrónica sobre **SAP Business One**.
+Trabajé en una intranet de trabajadores la cual se basa en: 
 
-- Integración con DI API
-- Generación de DTE
-- Reportería en SQL Server`,
-        images: ['https://picsum.photos/seed/work1a/800/500', 'https://picsum.photos/seed/work1b/800/500'],
-        site: 'https://example.com',
+- Administración de usuarios
+- Gestión de permisos y vacaciones con flujos de aprobación
+- Sección de noticias.
+
+Desarrollado en:
+- React
+- Python
+- MariaDB
+- Desplegado en DigitalOcean con VM en Linux`,
+        images: [],
+        site: '',
     },
     {
-        title: 'Portal Financiero',
-        image: 'https://picsum.photos/seed/work2/400/250',
-        summary: `# Portal Financiero
+        title: 'Proyectos Varios',
+        image: gatblac,
+        summary: `Proyecto Circularización (Bolsa de Santiago) (2023-2024)
 
-Plataforma web para gestión de créditos.
+Con Gatblac trabajé en Bolsa de Santiago. Estuve a cargo
+de desarrollar el módulo de Circularización dentro de la 
+plataforma Optimus
 
-- React + .NET
-- Autenticación JWT
-- Dashboards en tiempo real`,
-        images: ['https://picsum.photos/seed/work2a/800/500'],
-        repo: 'https://github.com/example/portal',
+Proyecto Centralización de Base de Datos (SKC Rental) (2023-2024)
+
+Con Gatblac también trabajé en SKC Rental, en un proyecto que buscaba
+centralizar las conexiones y consulta de la bd de Chile Perú y Colombia
+del sistema de la empresa`,
+        images: [],
+        repo: '',
     },
+    {
+        title: 'Sistema Pesajes Recmetal',
+        image: recmetal,
+        summary: `Sistema Romanas Recmetal (2025-2026)
+Plataforma que registra y centraliza pesajes industriales
+de diferentes plantas de la empresa
+
+Caracteristicas:
+- Generación de reportes de pesajes diarios
+- Captura de pesos de diferentes visores (Mettler Toledo, Prix)
+- Integración con capturas de cámaras IP (Hikvision) para evidenciar pesajes
+- Gestión de usuarios y roles
+
+Stack: Tauri (React + Rust), SQL Server, Azure (BlobStorage)
+`,
+        images: [RDashboard],
+        site: '',
+    }
 ]
 
 const personal: Project[] = [
     {
-        title: 'Portafolio JG',
-        image: 'https://picsum.photos/seed/perso1/400/250',
-        summary: `# Portafolio JG
+        title: 'Informe COMEX',
+        image: comex,
+        summary: `# Informe COMEX
+Sistema de análisis de reportes de exportaciones
+a partir de partidas arancelarias.
+La información se puede obtener desde DataSur.
 
-Este mismo sitio.
+Caracteristicas:
 
-- React 19 + Vite
-- Tailwind CSS 4 + daisyUI 5`,
-        images: ['https://picsum.photos/seed/perso1a/800/500'],
-        site: 'https://example.com',
-        repo: 'https://github.com/example/protafolio-jg',
+- Acceso a reportes completos
+- Dashboard interactivo con filtros
+- Exportación a PDF Resumen
+
+En el repositorio se encuentra un CSV de prueba.
+`,
+        images: [CInforme,comex],
+        site: 'https://comex.javier-gonzalez.me',
+        repo: 'https://github.com/JavierGonzalez998/Comex-Data-Analisis',
     },
     {
-        title: 'Skate Tracker',
-        image: 'https://picsum.photos/seed/perso2/400/250',
-        summary: `# Skate Tracker
+        title: 'PokeTrainer',
+        image: PTrainer,
+        summary: `# PokeTrainer
+        
+App para registrar y gestionar tus equipos pokemon.
 
-App para registrar sesiones de patinaje 🛹.
-
-- Rust + SQLite`,
-        images: ['https://picsum.photos/seed/perso2a/800/500', 'https://picsum.photos/seed/perso2b/800/500'],
-        repo: 'https://github.com/example/skate-tracker',
+Caracteristicas:
+- UI Temática acorde al Videojuego Pokemon
+- Visualización de Sprites de los Pokemon según la elección del usuario
+`,
+        images: [PTrainerTeam],
+        repo: 'https://github.com/JavierGonzalez998/PokeTrainer',
     },
 ]
 
 function Row({ items, onPick }: { items: Project[]; onPick: (p: Project) => void }) {
+    const [emblaRef, embla] = useEmblaCarousel({ align: 'start', dragFree: true })
+
     return (
-        <div className="carousel carousel-center w-full gap-4 p-4">
-            {items.map((p) => (
-                <button
-                    key={p.title}
-                    className="carousel-item btn btn-ghost h-auto p-0 rounded-box overflow-hidden shadow-lg"
-                    onClick={() => onPick(p)}
-                >
-                    <img src={p.image} alt={p.title} className="w-72 object-cover" />
-                </button>
-            ))}
+        <div className="relative px-12">
+            <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex gap-4 py-4">
+                    {items.map((p) => (
+                        <button
+                            key={p.title}
+                            className="shrink-0 w-72 bg-base-100 rounded-box overflow-hidden shadow-lg cursor-pointer transition hover:scale-105"
+                            onClick={() => onPick(p)}
+                        >
+                            <div className="h-40 flex items-center justify-center bg-white p-4">
+                                <img src={p.image} alt={p.title} className="max-h-full max-w-full object-contain" />
+                            </div>
+                            <p className="font-semibold text-sm p-2 text-center truncate">{p.title}</p>
+                        </button>
+                    ))}
+                </div>
+            </div>
+            <button
+                className="btn btn-circle btn-sm absolute left-0 top-1/2 -translate-y-1/2"
+                onClick={() => embla?.scrollPrev()}
+                aria-label="Anterior"
+            >
+                <ChevronLeft size={18} />
+            </button>
+            <button
+                className="btn btn-circle btn-sm absolute right-0 top-1/2 -translate-y-1/2"
+                onClick={() => embla?.scrollNext()}
+                aria-label="Siguiente"
+            >
+                <ChevronRight size={18} />
+            </button>
         </div>
     )
 }
@@ -120,11 +191,9 @@ export default () => {
                                         </pre>
                                     ))}
                                 </div>
-                                <div className="carousel carousel-center flex-1 gap-2 rounded-box">
+                                <div className="flex-1 flex gap-2 overflow-x-auto rounded-box">
                                     {active.images.map((img) => (
-                                        <div key={img} className="carousel-item w-full">
-                                            <img src={img} alt={active.title} className="w-full object-cover rounded-box" />
-                                        </div>
+                                        <img key={img} src={img} alt={active.title} className="w-full shrink-0 object-contain rounded-box" />
                                     ))}
                                 </div>
                             </div>
