@@ -11,7 +11,7 @@ import CInforme from '@/assets/comex-informe.png'
 import PTrainer from '@/assets/pTrainerMain.png'
 import PTrainerTeam from '@/assets/PTrainerTeam.png'
 import RDashboard from '@/assets/Romanas-Dashboard.png'
-import RecDet from '@/assets/RecDet.png'
+import RecDet from '@/assets/recDet.png'
 
 type Project = {
     title: string
