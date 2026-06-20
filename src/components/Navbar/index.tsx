@@ -8,7 +8,7 @@ export default () => {
     const [dark, setDark] = useState(systemDark)
 
     useEffect(() => {
-        document.documentElement.setAttribute('data-theme', dark ? 'abyss' : 'retro')
+        document.documentElement.setAttribute('data-theme', dark ? 'business' : 'winter')
     }, [dark])
 
     return (

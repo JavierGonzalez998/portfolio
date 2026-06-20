@@ -8,8 +8,8 @@ export default () => {
             }}
         >
             <div className="hero-overlay" id="Hero"></div>
-            <div className="hero-content text-neutral-content text-center">
-                <div className="max-w-md text-accent-content bg-base-300 p-6 rounded-lg shadow-2xl">
+            <div className="hero-content text-center">
+                <div className="max-w-md bg-base-300 p-6 rounded-lg shadow-2xl">
                     <h1 className="mb-5 text-5xl font-bold">Bienvenid@s!</h1>
                     <p className="text-2xl mb-5">
                         Portafolio de Javier Gonzalez

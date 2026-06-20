@@ -11,6 +11,8 @@ import CInforme from '@/assets/comex-informe.png'
 import PTrainer from '@/assets/pTrainerMain.png'
 import PTrainerTeam from '@/assets/PTrainerTeam.png'
 import RDashboard from '@/assets/Romanas-Dashboard.png'
+import RecDet from '@/assets/RecDet.png'
+
 type Project = {
     title: string
     image: string
@@ -74,6 +76,23 @@ Stack: Tauri (React + Rust), SQL Server, Azure (BlobStorage)
 `,
         images: [RDashboard],
         site: '',
+    },
+    {
+        title: 'Detalle de Pesajes',
+        image: recmetal,
+        summary: `Sistema Detalle de Pesajes Recmetal (2025-2026)
+App Web para visualizar los detalles de los pesajes registrados.
+Vista para clientes y proveedores.
+
+Caracteristicas:
+- Visualización digital del ticket físico generado en la planta
+- Detalle de pesaje con información de producto, cliente, proveedor, etc.
+- Visualización de imágenes de las cámaras IP
+
+Stack: React, TypeScript, TailwindCSS, Python
+`,
+        images: [RecDet],
+        site: '',
     }
 ]
 
@@ -91,6 +110,7 @@ Caracteristicas:
 - Acceso a reportes completos
 - Dashboard interactivo con filtros
 - Exportación a PDF Resumen
+- Stack: React, TypeScript, CSS
 
 En el repositorio se encuentra un CSV de prueba.
 `,
@@ -108,6 +128,7 @@ App para registrar y gestionar tus equipos pokemon.
 Caracteristicas:
 - UI Temática acorde al Videojuego Pokemon
 - Visualización de Sprites de los Pokemon según la elección del usuario
+- Stack: .NET 8 Blazor, C#, Bootstrap
 `,
         images: [PTrainerTeam],
         repo: 'https://github.com/JavierGonzalez998/PokeTrainer',

@@ -8,7 +8,7 @@ const links = [
 
 export default () => {
     return (
-        <section className="w-screen min-h-screen bg-base-200 flex items-center justify-center p-8" id="Contact">
+        <section className="w-screen min-h-screen bg-base-200 flex items-center justify-center p-8 relative" id="Contact">
             <div className="text-center">
                 <h1 className="text-5xl font-bold mb-4">Contacto</h1>
                 <p className="mb-8 text-lg">¿Trabajamos juntos? Escríbeme por cualquiera de estos medios.</p>
@@ -19,6 +19,9 @@ export default () => {
                         </a>
                     ))}
                 </div>
+            </div>
+            <div className='w-screen h-6 absolute bottom-15 bg-base-200 text-center' >
+                <p className='text-lg'>© {new Date().getFullYear()}. Hecho con ❤️ por Javier Gonzalez.</p>
             </div>
         </section>
     )
