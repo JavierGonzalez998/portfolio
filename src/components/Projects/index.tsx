@@ -139,19 +139,19 @@ function Row({ items, onPick }: { items: Project[]; onPick: (p: Project) => void
     const [emblaRef, embla] = useEmblaCarousel({ align: 'start', dragFree: true })
 
     return (
-        <div className="relative px-12">
+        <div className="relative px-8 sm:px-12">
             <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex gap-4 py-4">
+                <div className="flex gap-3 sm:gap-4 py-4">
                     {items.map((p) => (
                         <button
                             key={p.title}
-                            className="shrink-0 w-72 bg-base-100 rounded-box overflow-hidden shadow-lg cursor-pointer transition hover:scale-105"
+                            className="shrink-0 w-52 sm:w-72 bg-base-100 rounded-box overflow-hidden shadow-lg cursor-pointer transition hover:scale-105 active:scale-95"
                             onClick={() => onPick(p)}
                         >
-                            <div className="h-40 flex items-center justify-center bg-white p-4">
+                            <div className="h-32 sm:h-40 flex items-center justify-center bg-white p-4">
                                 <img src={p.image} alt={p.title} className="max-h-full max-w-full object-contain" />
                             </div>
-                            <p className="font-semibold text-sm p-2 text-center truncate">{p.title}</p>
+                            <p className="font-semibold text-xs sm:text-sm p-2 text-center truncate">{p.title}</p>
                         </button>
                     ))}
                 </div>
@@ -184,50 +184,52 @@ export default () => {
     }
 
     return (
-        <section className="w-screen min-h-screen bg-base-200 pt-5" id="Projects">
-            <div className="p-8">
-                <h1 className="text-5xl font-bold mb-6">Proyectos</h1>
+        <section className="w-full min-h-screen bg-base-200 pt-5" id="Projects">
+            <div className="p-4 sm:p-8">
+                <h2 className="text-3xl sm:text-5xl font-bold mb-6">Proyectos</h2>
 
-                <h2 className="text-2xl font-semibold">Laborales</h2>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-1">Laborales</h3>
                 <Row items={work} onPick={open} />
 
-                <h2 className="text-2xl font-semibold">Personales</h2>
+                <h3 className="text-xl sm:text-2xl font-semibold mt-6 mb-1">Personales</h3>
                 <Row items={personal} onPick={open} />
             </div>
 
             <dialog ref={dialog} className="modal" tabIndex={0}>
-                <div className="modal-box max-w-5xl">
+                <div className="modal-box w-full max-w-5xl mx-2 sm:mx-auto">
                     <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
 
                     {active && (
                         <>
-                            <h3 className="text-2xl font-bold mb-4">{active.title}</h3>
+                            <h3 className="text-xl sm:text-2xl font-bold mb-4 pr-8">{active.title}</h3>
                             <div className="flex flex-col lg:flex-row gap-4">
-                                <div className="mockup-code flex-1 text-sm">
+                                <div className="mockup-code flex-1 text-xs sm:text-sm overflow-x-auto">
                                     {active.summary.split('\n').map((line, i) => (
                                         <pre key={i} data-prefix={i + 1}>
                                             <code>{line}</code>
                                         </pre>
                                     ))}
                                 </div>
-                                <div className="flex-1 flex gap-2 overflow-x-auto rounded-box">
-                                    {active.images.map((img) => (
-                                        <img key={img} src={img} alt={active.title} className="w-full shrink-0 object-contain rounded-box" />
-                                    ))}
-                                </div>
+                                {active.images.length > 0 && (
+                                    <div className="flex-1 flex gap-2 overflow-x-auto rounded-box">
+                                        {active.images.map((img) => (
+                                            <img key={img} src={img} alt={active.title} className="w-full shrink-0 object-contain rounded-box" />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
-                            <div className="modal-action">
+                            <div className="modal-action flex-wrap gap-2">
                                 {active.site && (
-                                    <a href={active.site} target="_blank" rel="noreferrer" className="btn btn-primary">
-                                        <Globe size={18} /> Visitar sitio
+                                    <a href={active.site} target="_blank" rel="noreferrer" className="btn btn-primary btn-sm sm:btn-md">
+                                        <Globe size={16} /> Visitar sitio
                                     </a>
                                 )}
                                 {active.repo && (
-                                    <a href={active.repo} target="_blank" rel="noreferrer" className="btn">
-                                        <GitBranch size={18} /> Repositorio
+                                    <a href={active.repo} target="_blank" rel="noreferrer" className="btn btn-sm sm:btn-md">
+                                        <GitBranch size={16} /> Repositorio
                                     </a>
                                 )}
                             </div>

@@ -8,21 +8,21 @@ const links = [
 
 export default () => {
     return (
-        <section className="w-screen min-h-screen bg-base-200 flex items-center justify-center p-8 relative" id="Contact">
-            <div className="text-center">
-                <h1 className="text-5xl font-bold mb-4">Contacto</h1>
-                <p className="mb-8 text-lg">¿Trabajamos juntos? Escríbeme por cualquiera de estos medios.</p>
-                <div className="flex flex-col gap-4 max-w-md mx-auto">
+        <section className="w-full min-h-screen bg-base-200 flex flex-col items-center justify-center p-6 sm:p-8 gap-8" id="Contact">
+            <div className="text-center w-full max-w-md">
+                <h2 className="text-3xl sm:text-5xl font-bold mb-4">Contacto</h2>
+                <p className="mb-8 text-base sm:text-lg">¿Trabajamos juntos? Escríbeme por cualquiera de estos medios.</p>
+                <div className="flex flex-col gap-3 sm:gap-4">
                     {links.map(({ icon: Icon, label, href }) => (
-                        <a key={href} href={href} target="_blank" rel="noreferrer" className="btn btn-lg justify-start gap-4">
-                            <Icon size={22} /> {label}
+                        <a key={href} href={href} target="_blank" rel="noreferrer" className="btn btn-md sm:btn-lg justify-start gap-3 sm:gap-4 text-sm sm:text-base">
+                            <Icon size={20} /> {label}
                         </a>
                     ))}
                 </div>
             </div>
-            <div className='w-screen h-6 absolute bottom-15 bg-base-200 text-center' >
-                <p className='text-lg'>© {new Date().getFullYear()}. Hecho con ❤️ por Javier Gonzalez.</p>
-            </div>
+            <footer className="text-center text-sm sm:text-base opacity-70">
+                <p>© {new Date().getFullYear()}. Hecho con ❤️ por Javier González.</p>
+            </footer>
         </section>
     )
 }
