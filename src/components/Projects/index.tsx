@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import { GitBranch, Globe, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useRef, useState, useCallback, useEffect } from 'react'
+import { GitBranch, Globe, ChevronLeft, ChevronRight} from 'lucide-react'
 import useEmblaCarousel from 'embla-carousel-react'
 
 import audisoft from '@/assets/audisoft.png'
@@ -12,6 +12,8 @@ import PTrainer from '@/assets/pTrainerMain.png'
 import PTrainerTeam from '@/assets/PTrainerTeam.png'
 import RDashboard from '@/assets/Romanas-Dashboard.png'
 import RecDet from '@/assets/recDet.png'
+import Letsrecipe from '@/assets/letsrecipe.png'
+import LrProfile from '@/assets/letsrecipe_profile.png'
 
 type Project = {
     title: string
@@ -114,7 +116,7 @@ Caracteristicas:
 
 En el repositorio se encuentra un CSV de prueba.
 `,
-        images: [CInforme,comex],
+        images: [CInforme, comex],
         site: 'https://comex.javier-gonzalez.me',
         repo: 'https://github.com/JavierGonzalez998/Comex-Data-Analisis',
     },
@@ -133,7 +135,93 @@ Caracteristicas:
         images: [PTrainerTeam],
         repo: 'https://github.com/JavierGonzalez998/PokeTrainer',
     },
+    {
+        title: "Let's Recipe",
+        image: Letsrecipe,
+        summary: `LetsRecipe
+        
+App para compartir recetas, valorar y comentar.
+
+Una de las cosas que más me gusta es cocinar, además de la programación.
+Es por eso que decidí crear este proyecto. Se basa en una red social
+cuyo fin es compartir tus recetas, asi como también valorar y comentar
+las recetas de las demás personas. Compartiendo nuestro amor por la cocina.
+
+Caracteristicas:
+- UI Moderno, fresco en estilos y colores
+- Gestión de usuarios, recetas, ingredientes y categorías.
+- Dashboard de usuarios y administración
+- Gestión de caché con Redis y ORM en MySQL
+- Almacenamiento de imágenes en Bucket S3 (Bucket Railway)
+- Versión Demo con usuarios fijos para pruebas.
+`,
+        images: [Letsrecipe, LrProfile],
+        site:'https://letsrecipe.javier-gonzalez.me',
+        repo: 'https://github.com/JavierGonzalez998/LetsRecipe',
+    },
 ]
+
+function ModalCarousel({ images, title }: { images: string[]; title: string }) {
+    const [emblaRef, embla] = useEmblaCarousel({ loop: true })
+    const [current, setCurrent] = useState(0)
+
+    const onSelect = useCallback(() => {
+        if (!embla) return
+        setCurrent(embla.selectedScrollSnap())
+    }, [embla])
+
+    useEffect(() => {
+        if (!embla) return
+        embla.on('select', onSelect)
+        onSelect()
+        return () => { embla.off('select', onSelect) }
+    }, [embla, onSelect])
+
+    if (images.length === 0) return null
+
+    if (images.length === 1)
+        return <img src={images[0]} alt={title} className="w-full object-contain rounded-box" />
+
+    return (
+        <div className="relative flex-1 min-w-0">
+            <div className="overflow-hidden rounded-box" ref={emblaRef}>
+                <div className="flex">
+                    {images.map((img) => (
+                        <div key={img} className="shrink-0 w-full">
+                            <img src={img} alt={title} className="w-full object-contain rounded-box" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <button
+                className="btn btn-circle btn-sm absolute left-2 top-1/2 -translate-y-1/2 opacity-80"
+                onClick={() => embla?.scrollPrev()}
+                aria-label="Anterior"
+            >
+                <ChevronLeft size={16} />
+            </button>
+            <button
+                className="btn btn-circle btn-sm absolute right-2 top-1/2 -translate-y-1/2 opacity-80"
+                onClick={() => embla?.scrollNext()}
+                aria-label="Siguiente"
+            >
+                <ChevronRight size={16} />
+            </button>
+
+            <div className="flex justify-center gap-1.5 mt-2">
+                {images.map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => embla?.scrollTo(i)}
+                        className={`w-2 h-2 rounded-full transition-all ${i === current ? 'bg-primary w-4' : 'bg-base-content/30'}`}
+                        aria-label={`Imagen ${i + 1}`}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
 
 function Row({ items, onPick }: { items: Project[]; onPick: (p: Project) => void }) {
     const [emblaRef, embla] = useEmblaCarousel({ align: 'start', dragFree: true })
@@ -213,11 +301,7 @@ export default () => {
                                     ))}
                                 </div>
                                 {active.images.length > 0 && (
-                                    <div className="flex-1 flex gap-2 overflow-x-auto rounded-box">
-                                        {active.images.map((img) => (
-                                            <img key={img} src={img} alt={active.title} className="w-full shrink-0 object-contain rounded-box" />
-                                        ))}
-                                    </div>
+                                    <ModalCarousel images={active.images} title={active.title} />
                                 )}
                             </div>
 
