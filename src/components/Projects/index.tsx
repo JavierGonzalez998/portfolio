@@ -100,6 +100,30 @@ Stack: React, TypeScript, TailwindCSS, Python
 
 const personal: Project[] = [
     {
+        title: "Let's Recipe",
+        image: Letsrecipe,
+        summary: `LetsRecipe
+        
+App para compartir recetas, valorar y comentar.
+
+Una de las cosas que más me gusta es cocinar, además de la programación.
+Es por eso que decidí crear este proyecto. Se basa en una red social
+cuyo fin es compartir tus recetas, asi como también valorar y comentar
+las recetas de las demás personas. Compartiendo nuestro amor por la cocina.
+
+Caracteristicas:
+- UI Moderno, fresco en estilos y colores
+- Gestión de usuarios, recetas, ingredientes y categorías.
+- Dashboard de usuarios y administración
+- Gestión de caché con Redis y ORM en MySQL
+- Almacenamiento de imágenes en Bucket S3 (Bucket Railway)
+- Versión Demo con usuarios fijos para pruebas.
+`,
+        images: [Letsrecipe, LrProfile],
+        site:'https://letsrecipe.javier-gonzalez.me',
+        repo: 'https://github.com/JavierGonzalez998/LetsRecipe',
+    },
+    {
         title: 'Informe COMEX',
         image: comex,
         summary: `# Informe COMEX
@@ -134,30 +158,6 @@ Caracteristicas:
 `,
         images: [PTrainerTeam],
         repo: 'https://github.com/JavierGonzalez998/PokeTrainer',
-    },
-    {
-        title: "Let's Recipe",
-        image: Letsrecipe,
-        summary: `LetsRecipe
-        
-App para compartir recetas, valorar y comentar.
-
-Una de las cosas que más me gusta es cocinar, además de la programación.
-Es por eso que decidí crear este proyecto. Se basa en una red social
-cuyo fin es compartir tus recetas, asi como también valorar y comentar
-las recetas de las demás personas. Compartiendo nuestro amor por la cocina.
-
-Caracteristicas:
-- UI Moderno, fresco en estilos y colores
-- Gestión de usuarios, recetas, ingredientes y categorías.
-- Dashboard de usuarios y administración
-- Gestión de caché con Redis y ORM en MySQL
-- Almacenamiento de imágenes en Bucket S3 (Bucket Railway)
-- Versión Demo con usuarios fijos para pruebas.
-`,
-        images: [Letsrecipe, LrProfile],
-        site:'https://letsrecipe.javier-gonzalez.me',
-        repo: 'https://github.com/JavierGonzalez998/LetsRecipe',
     },
 ]
 
