@@ -180,7 +180,11 @@ function ModalCarousel({ images, title }: { images: string[]; title: string }) {
     if (images.length === 0) return null
 
     if (images.length === 1)
-        return <img src={images[0]} alt={title} className="w-full object-contain rounded-box" />
+        return (
+            <div className="flex-1 min-w-0">
+                <img src={images[0]} alt={title} className="w-full object-contain rounded-box" />
+            </div>
+        )
 
     return (
         <div className="relative flex-1 min-w-0">
