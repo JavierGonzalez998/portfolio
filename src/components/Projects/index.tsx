@@ -14,7 +14,9 @@ import RDashboard from '@/assets/Romanas-Dashboard.png'
 import RecDet from '@/assets/recDet.png'
 import Letsrecipe from '@/assets/letsrecipe.png'
 import LrProfile from '@/assets/letsrecipe_profile.png'
-
+import tp_main from '@/assets/tp1.png';
+import tp_dashboard from '@/assets/tp2.png';
+import tp_sheet from '@/assets/tp3.png'
 type Project = {
     title: string
     image: string
@@ -99,6 +101,29 @@ Stack: React, TypeScript, TailwindCSS, Python
 ]
 
 const personal: Project[] = [
+     {
+        title: "TabsPro",
+        image: tp_main,
+        summary: `TabsPro
+        
+App para editar y compartir tablaturas de Guitarra/Bajo.
+
+App diseñada para compartir y editar tablaturas de instrumentos musicales
+Ideal para coordinar y componer entre bandas/solista.
+
+Caracteristicas:
+- Gestión de tablaturas.
+- Dashboard simple
+- Opción de descargar MIDI para reproducción
+- Las tabs se almacenan en la nube, por lo que se puede acceder en cualquier parte.
+- Edición de tabs en tiempo real.
+- MVP en desarrollo
+Stack: ReactJS, NodeJS (Hono), MySQL
+`,
+        images: [tp_dashboard, tp_sheet],
+        site:'https://tabspro.javier-gonzalez.me',
+        repo: 'https://github.com/JavierGonzalez998/Tab-Pro-Front',
+    },
     {
         title: "Let's Recipe",
         image: Letsrecipe,
