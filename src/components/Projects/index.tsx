@@ -17,6 +17,9 @@ import LrProfile from '@/assets/letsrecipe_profile.png'
 import tp_main from '@/assets/tp1.png';
 import tp_dashboard from '@/assets/tp2.png';
 import tp_sheet from '@/assets/tp3.png'
+import pdfmerge from '@/assets/pdfmerge.png'
+import pdfmergeIcon from '@/assets/icon_pdfmerge.png'
+
 type Project = {
     title: string
     image: string
@@ -101,6 +104,28 @@ Stack: React, TypeScript, TailwindCSS, Python
 ]
 
 const personal: Project[] = [
+    {
+        title: "PDF Merge",
+        image: pdfmergeIcon,
+        summary: `PDF Merge
+        
+App multiplataforma para unir hojas de diferentes PDFs.
+
+App diseñada para unificar diferentes hojas de archivos PDF.
+Se selecciona una carpeta y se listan todos los documentos PDF que
+se encuentren en la carpeta. Se puede seleccionar diferentes hojas y unir todo en un PDF.
+
+Caracteristicas:
+- Listar varios archivos PDF en una carpeta
+- Búsqueda recursiva (Detecta archivos dentro de carpetas)
+- Unifica varias hojas de diferentes PDF
+Stack: TAURI (React + Rust)
+`,
+        images: [pdfmerge],
+        site:'https://github.com/JavierGonzalez998/PDF-Merge/releases',
+        repo: 'https://github.com/JavierGonzalez998/PDF-Merge/',
+    
+    },
      {
         title: "TabsPro",
         image: tp_main,
